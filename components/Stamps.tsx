@@ -38,8 +38,12 @@ const Stamps = ({ user, stamps }: StampsProps) => {
 					}
 				/>
 				<Flex flexDirection="column">
-					<Text fontSize="xs">30 days old</Text>
-					<Text fontSize="xs">transaction</Text>
+					<Text fontSize="xs" color="black">
+						30 days old
+					</Text>
+					<Text fontSize="xs" color="black">
+						transaction
+					</Text>
 				</Flex>
 			</Flex>
 			<Flex
@@ -67,8 +71,12 @@ const Stamps = ({ user, stamps }: StampsProps) => {
 					}
 				/>
 				<Flex flexDirection="column" align="center">
-					<Text fontSize="xs">Have an</Text>
-					<Text fontSize="xs">.eth name</Text>
+					<Text fontSize="xs" color="black">
+						Have an
+					</Text>
+					<Text fontSize="xs" color="black">
+						.eth name
+					</Text>
 				</Flex>
 			</Flex>
 			<Flex
@@ -96,8 +104,12 @@ const Stamps = ({ user, stamps }: StampsProps) => {
 					}
 				/>
 				<Flex flexDirection="column" align="center">
-					<Text fontSize="xs">Hold at</Text>
-					<Text fontSize="xs">least 1 NFT</Text>
+					<Text fontSize="xs" color="black">
+						Hold at
+					</Text>
+					<Text fontSize="xs" color="black">
+						least 1 NFT
+					</Text>
 				</Flex>
 			</Flex>
 			<Flex
@@ -125,8 +137,12 @@ const Stamps = ({ user, stamps }: StampsProps) => {
 					}
 				/>
 				<Flex flexDirection="column" align="center">
-					<Text fontSize="xs">15 days</Text>
-					<Text fontSize="xs">old POAP</Text>
+					<Text fontSize="xs" color="black">
+						15 days
+					</Text>
+					<Text fontSize="xs" color="black">
+						old POAP
+					</Text>
 				</Flex>
 			</Flex>
 		</HStack>
