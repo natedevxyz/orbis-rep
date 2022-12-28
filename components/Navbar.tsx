@@ -21,7 +21,7 @@ const Navbar = ({ user }: NavbarProps) => {
 			{user !== '' && (
 				<HStack mt={4} pr={10}>
 					<Text color="white">Connected to Orbis</Text>
-					<Image src="/orbisLogo.png" boxSize="20px"></Image>
+					<Image src="/orbisLogo.png" boxSize="20px" />
 				</HStack>
 			)}
 			<Box mt={2} mr={2}>

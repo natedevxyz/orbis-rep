@@ -2,7 +2,7 @@ import { Flex, Text, Image } from '@chakra-ui/react';
 
 const Hero = () => {
 	return (
-		<Flex align="center" justify="space-evenly" minW="100%" px={32}>
+		<Flex align="center" justify="space-evenly" minW="100%" px={32} py={20}>
 			<Flex flexDirection="column">
 				<Text color="white" fontSize="xl">
 					OrbisRep is a reputation index that harness the power of Gitcoin
@@ -20,11 +20,11 @@ const Hero = () => {
 					objectFit="contain"
 					maxH="10rem"
 					mx={4}
-				></Image>
+				/>
 				<Text color="white" fontWeight="bold" fontSize="4xl">
 					+
 				</Text>
-				<Image src="/orbisLogo.png" objectFit="contain" maxH="10rem"></Image>
+				<Image src="/orbisLogo.png" objectFit="contain" maxH="10rem" />
 			</Flex>
 		</Flex>
 	);

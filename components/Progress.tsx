@@ -4,6 +4,7 @@ import {
 	Text,
 	CircularProgress,
 	CircularProgressLabel,
+	Link,
 } from '@chakra-ui/react';
 
 interface ProgressProps {
@@ -22,12 +23,27 @@ const Progress = ({ avatarUrl, score }: ProgressProps) => {
 						borderRadius="full"
 						ml={8}
 						objectFit="contain"
-					></Image>
+					/>
 				</CircularProgressLabel>
 			</CircularProgress>
 			<Text color="white" fontWeight="bold" fontSize="xl" mt={5}>
 				OrbisRep: {score}%
 			</Text>
+			{score < 100 && (
+				<Flex
+					mt={5}
+					as={Link}
+					href="https://passport.gitcoin.co/"
+					_hover={{
+						textDecoration: 'none',
+					}}
+				>
+					<Text color="white" fontSize="xl">
+						Get more credentials at
+					</Text>
+					<Image src="/gitcoinPassportLogoWhite.svg" maxH="5rem" ml={2} />
+				</Flex>
+			)}
 		</Flex>
 	);
 };
