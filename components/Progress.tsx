@@ -9,7 +9,7 @@ import {
 	Button,
 } from '@chakra-ui/react';
 import Jdenticon from 'react-jdenticon';
-import krebitService from '../services/krebit';
+import { krebitService } from '../services';
 
 interface ProgressProps {
 	avatarUrl: string;

@@ -2,13 +2,8 @@ import Head from 'next/head';
 import { Flex, useToast } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { useAccount, useEnsAvatar, useNetwork } from 'wagmi';
-import passportService from '../services/passport';
-import orbisService from '../services/orbis';
-import Navbar from '../components/Navbar';
-import Hero from '../components/Hero';
-import Stamps from '../components/Stamps';
-import Footer from '../components/Footer';
-import Progress from '../components/Progress';
+import { orbisService, passportService } from '../services';
+import { Navbar, Hero, Progress, Stamps, Footer } from '../components';
 
 export default function Home() {
 	const { address, isConnected } = useAccount();
@@ -16,6 +11,7 @@ export default function Home() {
 		address: address,
 	});
 	const { chain } = useNetwork();
+
 	const [user, setUser] = useState('');
 	const [score, setScore] = useState(0);
 	const [stamps, setStamps] = useState([]);
@@ -35,11 +31,13 @@ export default function Home() {
 			setAvatar(data!);
 		}
 	};
+
 	const login = async () => {
 		setUser(await orbisService.connect());
 		setScore(await passportService.getScore(address!));
 		setStamps(await passportService.getPassport(address!));
 	};
+
 	const logout = async () => {
 		const { defaultUser, defaultScore } = await orbisService.logout();
 		setUser(defaultUser);
