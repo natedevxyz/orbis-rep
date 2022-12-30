@@ -7,9 +7,10 @@ import {
 	walletConnectProvider,
 } from '@web3modal/ethereum';
 import { Web3Modal } from '@web3modal/react';
-import { configureChains, createClient, WagmiConfig, mainnet } from 'wagmi';
+import { configureChains, createClient, WagmiConfig } from 'wagmi';
+import { mainnet, polygon } from 'wagmi/chains';
 
-const chains = [mainnet];
+const chains = [mainnet, polygon];
 const projectId = process.env.NEXT_PUBLIC_WC_PROJECT_ID;
 
 const { provider } = configureChains(chains, [

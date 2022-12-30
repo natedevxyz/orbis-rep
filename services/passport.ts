@@ -35,7 +35,7 @@ class PassportService {
 				score: 0.25,
 			},
 			{
-				provider: 'POAP',
+				provider: 'GitcoinContributorStatistics#numGrantsContributeToGte#1',
 				issuer: 'did:key:z6MkghvGHLobLEdj1bgRLhS4LPGJAvbMA1tn2zcRyqmYU5LC',
 				score: 0.25,
 			},

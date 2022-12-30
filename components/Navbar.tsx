@@ -19,7 +19,7 @@ const Navbar = ({ user }: NavbarProps) => {
 				OrbisRep
 			</Text>
 			{user !== '' && (
-				<HStack mt={4} pr={10}>
+				<HStack mt={4} pr={12}>
 					<Text color="white">Connected to Orbis</Text>
 					<Image src="/orbisLogo.png" boxSize="20px" />
 				</HStack>

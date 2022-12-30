@@ -8,7 +8,7 @@ class OrbisService {
 	async connect() {
 		const res = await orbis.connect_v2({
 			provider: window.ethereum,
-			lit: false,
+			lit: true,
 		});
 
 		if (res.status == 200) {
@@ -16,6 +16,14 @@ class OrbisService {
 		} else {
 			return '';
 		}
+	}
+
+	async logout() {
+		const res = await orbis.logout();
+		const defaultUser = '';
+		const defaultScore = 0;
+
+		return { defaultUser, defaultScore };
 	}
 }
 

@@ -9,7 +9,10 @@ const Stamps = ({ user, stamps }: StampsProps) => {
 	const ethTx = stamps.filter(x => x === 'FirstEthTxnProvider').length === 1;
 	const ens = stamps.filter(x => x === 'Ens').length === 1;
 	const nft = stamps.filter(x => x === 'NFT').length === 1;
-	const poap = stamps.filter(x => x === 'POAP').length === 1;
+	const gitcoin =
+		stamps.filter(
+			x => x === 'GitcoinContributorStatistics#numGrantsContributeToGte#1'
+		).length === 1;
 
 	return (
 		<HStack align="center" justify="center" minW="100%" spacing={10} mt={10}>
@@ -121,27 +124,27 @@ const Stamps = ({ user, stamps }: StampsProps) => {
 				rounded="xl"
 				px={1}
 				borderWidth="6px"
-				borderColor={user === '' ? '#C0FDFF' : poap ? '#C0FDFF' : 'gray.200'}
+				borderColor={user === '' ? '#C0FDFF' : gitcoin ? '#C0FDFF' : 'gray.200'}
 				bg="white"
 			>
 				<Image
-					src="/poapStampIcon.svg"
+					src="/gitcoinStampIcon.svg"
 					objectFit="contain"
 					maxH="5rem"
 					filter={
 						user === ''
 							? 'grayscale(0%)'
-							: poap
+							: gitcoin
 							? 'grayscale(0%)'
 							: 'grayscale(100%)'
 					}
 				/>
 				<Flex flexDirection="column" align="center">
 					<Text fontSize="xs" color="black">
-						15 days
+						Aided at
 					</Text>
 					<Text fontSize="xs" color="black">
-						old POAP
+						least 1 grant
 					</Text>
 				</Flex>
 			</Flex>

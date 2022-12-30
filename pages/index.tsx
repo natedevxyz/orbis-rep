@@ -1,7 +1,7 @@
 import Head from 'next/head';
-import { Flex } from '@chakra-ui/react';
+import { Flex, useToast } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useAccount, useEnsAvatar } from 'wagmi';
+import { useAccount, useEnsAvatar, useNetwork } from 'wagmi';
 import passportService from '../services/passport';
 import orbisService from '../services/orbis';
 import Navbar from '../components/Navbar';
@@ -12,35 +12,54 @@ import Progress from '../components/Progress';
 
 export default function Home() {
 	const { address, isConnected } = useAccount();
-	const { data } = useEnsAvatar({
+	const { data, isError } = useEnsAvatar({
 		address: address,
 	});
+	const { chain } = useNetwork();
 	const [user, setUser] = useState('');
 	const [score, setScore] = useState(0);
 	const [stamps, setStamps] = useState([]);
+	const [avatar, setAvatar] = useState('');
+	const [chainId, setChainId] = useState(0);
 
-	const avatarUrl = data;
+	const toast = useToast({
+		title: 'Badge issued',
+		description: 'You can check it on Krebit.id',
+		status: 'success',
+		duration: 10000,
+		isClosable: true,
+	});
 
-	const loadConnection = async () => {
+	const loadAvatar = () => {
+		if (!isError) {
+			setAvatar(data!);
+		}
+	};
+	const login = async () => {
 		setUser(await orbisService.connect());
-	};
-	const loadScore = async () => {
 		setScore(await passportService.getScore(address!));
-	};
-	const loadStamps = async () => {
 		setStamps(await passportService.getPassport(address!));
+	};
+	const logout = async () => {
+		const { defaultUser, defaultScore } = await orbisService.logout();
+		setUser(defaultUser);
+		setScore(defaultScore);
 	};
 
 	useEffect(() => {
 		if (isConnected) {
-			loadConnection();
-			loadStamps();
-			loadScore();
+			login();
+			loadAvatar();
 		} else {
-			setUser('');
-			setScore(0);
+			logout();
 		}
 	}, [isConnected]);
+
+	useEffect(() => {
+		if (chain) {
+			setChainId(chain!.id);
+		}
+	}, [chain]);
 
 	return (
 		<>
@@ -56,7 +75,13 @@ export default function Home() {
 			>
 				<Navbar user={user} />
 				{user !== '' ? (
-					<Progress avatarUrl={avatarUrl!} score={score} />
+					<Progress
+						avatarUrl={avatar!}
+						address={address!}
+						score={score}
+						chainId={chainId}
+						toast={toast}
+					/>
 				) : (
 					<Hero />
 				)}
