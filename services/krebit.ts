@@ -10,7 +10,7 @@ class KrebitService {
 			entity: 'OrbisRep',
 			name: 'Orbis Reputation Index',
 			imageUrl: 'none',
-			description: 'Badge for tracking decentralized verification',
+			description: 'Badge of decentralized verification score',
 			skills: [{ skillId: 'verification', score: score }],
 			xp: 10,
 		};
