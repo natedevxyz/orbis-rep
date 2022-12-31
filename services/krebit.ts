@@ -36,25 +36,28 @@ class KrebitService {
 		const session = window.localStorage.getItem('did-session');
 		const currentSession = JSON.parse(session!);
 
-		const passport = new Krebit.core.Passport({
+		const Passport = new Krebit.core.Passport({
 			...information,
 			litSdk: LitJsSdk,
 		} as any);
-		await passport.connect(currentSession);
-
-		const issuer = new Krebit.core.Krebit({
-			...information,
-			litSdk: LitJsSdk,
-		} as any);
-		await issuer.connect(currentSession);
+		await Passport.connect(currentSession);
 
 		const claim = await this.getClaim(toAddress, score);
-		const issuedCredential = await issuer.issue(claim);
-		await issuer.checkCredential(issuedCredential);
-		const credentialId = await passport.addIssued(issuedCredential);
 
-		const credential = await passport.getCredential(credentialId);
-		const addCredential = await passport.addCredential(credential);
+		const requestIssue = await fetch('/api/issuer', {
+			method: 'POST',
+			body: JSON.stringify(claim),
+			headers: {
+				'Content-Type': 'application/json',
+			},
+		});
+		const responseIssue = await requestIssue.json();
+
+		const credentialId = responseIssue.credential;
+		console.log(credentialId);
+		const credential = await Passport.getCredential(credentialId);
+		console.log(credential);
+		const addCredential = await Passport.addCredential(credential);
 
 		return true;
 	};
